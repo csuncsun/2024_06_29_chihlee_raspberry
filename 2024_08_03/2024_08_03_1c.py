@@ -3,7 +3,7 @@ import os
 from datetime import datetime
 import random
 
-def created_log_file(file:str,folder:str='data')->str:
+def created_log_file(file:str,folder:str='data')->str:  #folder="data"有限定的參數必須要寫在最後面
     current_path = os.path.abspath(__name__) #取得目前檔案路徑
     directory_name = os.path.dirname(current_path) #取得目前資料夾路行
     data_path = os.path.join(directory_name,folder) #目前資料夾路徑加上data目錄
