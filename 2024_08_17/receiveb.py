@@ -1,10 +1,7 @@
 import paho.mqtt.client as mqtt
 import redis
-from dotenv import load_dotenv
-import os
-load_dotenv()
 
-redis_conn = redis.Redis(host=os.environ['REDIS_HOST'], port=6379,password=os.environ['REDIS_PASSWORD'])
+redis_conn = redis.Redis(host='localhost', port=6379,password='raspberry')
 
 
 def on_message(mosq, obj, msg):
@@ -16,6 +13,6 @@ def on_message(mosq, obj, msg):
 if __name__ == '__main__':
     client = mqtt.Client(mqtt.CallbackAPIVersion.VERSION2)
     client.on_message = on_message
-    client.connect(os.environ['MQTT_SERVER'])
+    client.connect('127.0.0.1')
     client.subscribe('501教室/老師桌燈',qos=2)
     client.loop_forever()
